@@ -1,4 +1,5 @@
 require './lib/alg/state_graph'
+require './lib/alg/a_star_search'
 require './lib/ui/text_ui'
 
 # get user input for box, robot, wall positions
@@ -15,14 +16,29 @@ if (!game.is_valid_state?(start))
   exit
 end
 
+graph.add_node(start)
+
 # goal states
 goals = graph.neighbours_of State.new(game.goal_position, game.goal_position)
-
-goals.each {|el| print el.to_s + "\n"}
 
 if (goals.empty?)
   TextUI.render_message("The game has no solution.")
   exit
 end
+
+search_algorithm = AStarSearch.new
+search_algorithm.start = start
+search_algorithm.goals = goals
+search_algorithm.graph = graph
+
+path = search_algorithm.search
+
+if nil == path
+  TaxtUI.render_message("No path found.")
+  exit
+end
+
+TextUI.render_path(path)
+
 
 

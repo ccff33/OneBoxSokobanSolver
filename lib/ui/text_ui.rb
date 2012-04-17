@@ -1,4 +1,5 @@
 require './lib/alg/game_properties'
+require './lib/ui/path_to_actions_convertor'
 
 class TextUI
   
@@ -15,7 +16,10 @@ class TextUI
   end
   
   def self.render_path(path)
-    path.each {|el| print el.key + "\n"}
+    actions = PathToActionsConvertor.new(path)
+    actions.each do |action|
+      self.render_message action
+    end
   end
   
   def self.render_message(message)
