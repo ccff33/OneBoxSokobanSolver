@@ -9,6 +9,7 @@ class GameProperties
   def initialize(size)
     @size = size
     @walls = Hash.new
+    add_bordering_walls
   end
   
   def add_wall(position)
@@ -16,7 +17,7 @@ class GameProperties
   end
   
   def is_valid_state?(state)
-    !is_wall(state.robot) && !is_wall(state.box) && !state.robot.eql?(state.box)
+    !is_wall?(state.robot) && !is_wall?(state.box) && !state.robot.eql?(state.box)
   end
   
   private
