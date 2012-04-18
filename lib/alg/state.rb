@@ -1,4 +1,4 @@
-require './lib/alg/position'
+require_relative 'position'
 
 # Represents Game state : (robotPosition, boxPosition)
 class State

@@ -1,5 +1,5 @@
-require './lib/alg/state'
-require './lib/alg/game_properties'
+require_relative 'state'
+require_relative 'game_properties'
 
 class StateGraph
   

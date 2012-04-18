@@ -1,7 +1,7 @@
-require './lib/alg/state_graph'
-require './lib/alg/a_star_search'
-require './lib/ui/text_ui'
-require './lib/ui/state_renderer'
+require_relative 'lib/alg/state_graph'
+require_relative 'lib/alg/a_star_search'
+require_relative 'lib/ui/text_ui'
+require_relative 'lib/ui/state_renderer'
 
 output_file_name = 'output'
 
@@ -14,8 +14,13 @@ graph = StateGraph.new(game)
 # initial state
 start = State.new(game.initial_robot_position, game.initial_box_position)
 
-if (!game.is_valid_state?(start))
-  TextUI.render_message("Wrong initial state.")
+if !game.is_valid_state?(start)
+  TextUI.render_message("Wrong input data???")
+  exit
+end
+
+if game.initial_box_position.eql?(game.goal_position)
+  TextUI.render_message("You got it!")
   exit
 end
 
@@ -24,8 +29,8 @@ graph.add_node(start)
 # goal states
 goals = graph.neighbours_of State.new(game.goal_position, game.goal_position)
 
-if (goals.empty?)
-  TextUI.render_message("The game has no solution.")
+if goals.empty?
+  TextUI.render_message("Impossible.")
   exit
 end
 
@@ -37,6 +42,7 @@ search_algorithm.graph = graph
 path = search_algorithm.search
 
 if nil == path
+  print "\n" + StateRenderer.render(game, start)
   TextUI.render_message("No path found.")
   exit
 end

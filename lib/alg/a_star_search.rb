@@ -1,4 +1,4 @@
-require './lib/alg/state_graph'
+require_relative 'state_graph'
 require 'priority_queue'
 
 class AStarSearch
@@ -17,6 +17,7 @@ class AStarSearch
     
     while !open_set.empty?
       node = open_set.delete_min_return_key
+      closed_set << node
       if goals.include? node
         return path_to(node)
       end
@@ -32,16 +33,13 @@ class AStarSearch
           ni.cost_from_start = cost_from_start
           ni.estimated_rest_cost = estimate_cost_over_all_goals_from ni
           if is_closed
-            closed_set.delete(ni)
+             closed_set.delete(ni)
           end
           if !is_open
             open_set.push(ni, ni.f)
-          else
-            open_set.change_priority(ni, ni.f)
           end
         end
       end
-      closed_set << node
     end
     return nil
   end

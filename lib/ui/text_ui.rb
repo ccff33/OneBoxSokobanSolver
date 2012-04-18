@@ -1,6 +1,6 @@
-require './lib/alg/game_properties'
-require './lib/ui/path_to_actions_convertor'
-require './lib/ui/state_renderer'
+require_relative '../alg/game_properties'
+require_relative 'path_to_actions_convertor'
+require_relative 'state_renderer'
 
 class TextUI
   

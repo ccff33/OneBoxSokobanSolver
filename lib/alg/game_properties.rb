@@ -1,4 +1,4 @@
-require './lib/alg/state'
+require_relative 'state'
 
 # Keeps some initial properties
 class GameProperties
