@@ -16,9 +16,9 @@ class State
   end
   
   # Estimates the cost from the current state to node
-  # Uses the heuristic h = max(d(R, node.R), d(B, node.B))
+  # Use the heuristic d(B, node.B)
   def estimate_cost_to(node)
-    [robot.dist_to(node.robot), box.dist_to(node.box)].max
+    box.dist_to(node.box)
   end
   
   # f(n) = g(n) + h(n)

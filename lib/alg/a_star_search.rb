@@ -46,6 +46,7 @@ class AStarSearch
   
   private
   # For the search we use heuristic over all goal states h = g:goals min (node.HeuristicEstimateTo g))
+  # In the current version of the program they are all the same
   def estimate_cost_over_all_goals_from(node)
     estimates = Array.new
     goals.each do |goal|
