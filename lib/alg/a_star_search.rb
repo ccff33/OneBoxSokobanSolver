@@ -36,6 +36,8 @@ class AStarSearch
           end
           if !is_open
             open_set.push(ni, ni.f)
+          else
+            open_set.change_priority(ni, ni.f)
           end
         end
       end

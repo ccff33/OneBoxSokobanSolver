@@ -1,6 +1,9 @@
 require './lib/alg/state_graph'
 require './lib/alg/a_star_search'
 require './lib/ui/text_ui'
+require './lib/ui/state_renderer'
+
+output_file_name = 'output'
 
 # get user input for box, robot, wall positions
 game = TextUI.read_game_properties
@@ -34,11 +37,12 @@ search_algorithm.graph = graph
 path = search_algorithm.search
 
 if nil == path
-  TaxtUI.render_message("No path found.")
+  TextUI.render_message("No path found.")
   exit
 end
 
-TextUI.render_path(path)
+TextUI.render_path_actions(path)
 
+TextUI.render_path_to_file(output_file_name, game, path)
 
 

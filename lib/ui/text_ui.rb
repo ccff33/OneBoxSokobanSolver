@@ -1,5 +1,6 @@
 require './lib/alg/game_properties'
 require './lib/ui/path_to_actions_convertor'
+require './lib/ui/state_renderer'
 
 class TextUI
   
@@ -15,11 +16,19 @@ class TextUI
     return game
   end
   
-  def self.render_path(path)
+  def self.render_path_actions(path)
+    self.render_message("\n\n\nThese are the actions that the robot takes:\n")
     actions = PathToActionsConvertor.new(path)
     actions.each do |action|
       self.render_message action
     end
+  end
+  
+  def self.render_path_to_file(filename, game_properties, path)
+    output = ''
+    path.each {|state| output += StateRenderer.render(game_properties, state) + "\n\n"}
+    File.open(filename, 'w') {|f| f.write(output)}
+    self.render_message("\nFor a more detailed output see file: " + filename)
   end
   
   def self.render_message(message)

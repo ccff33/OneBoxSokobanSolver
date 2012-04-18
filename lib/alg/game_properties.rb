@@ -20,13 +20,13 @@ class GameProperties
     !is_wall?(state.robot) && !is_wall?(state.box) && !state.robot.eql?(state.box)
   end
   
-  private
   def is_wall?(position)
     @walls.include?(position)
   end
   
+  private
   def add_bordering_walls
-    for i in (0 .. size - 1)
+    for i in (-1 .. size)
       add_wall Position.new(-1, i)
       add_wall Position.new(i, -1)
       add_wall Position.new(size, i)
