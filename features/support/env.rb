@@ -1,0 +1,5 @@
+require_relative '../../lib/alg/state_graph.rb'
+require_relative '../../lib/alg/state.rb'
+require_relative '../../lib/alg/a_star_search.rb'
+require_relative '../../lib/alg/game_properties.rb'
+require_relative '../../lib/ui/game_properties_parser.rb'
