@@ -5,7 +5,8 @@ require_relative 'state_renderer'
 class TextUI
   
   def self.read_game_properties
-    game = GameProperties.new(read_integer("Board size: "))
+    game = GameProperties.new
+    game.size = read_integer("Board size: ")
     wall_count = read_integer("Enter the number of walls: ")
     for i in 1 .. wall_count
       game.add_wall(read_position("Enter Wall " + i.to_s + " position: "))

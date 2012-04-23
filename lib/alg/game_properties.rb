@@ -6,9 +6,12 @@ class GameProperties
   attr_accessor :initial_robot_position, :initial_box_position, :goal_position
   attr_reader :size
   
-  def initialize(size)
-    @size = size
+  def initialize
     @walls = Hash.new
+  end
+  
+  def size=(size)
+    @size = size
     add_bordering_walls
   end
   
